@@ -1,8 +1,9 @@
-package com.github.hadinajafi.springwebapp.bootstrap;
+package com.github.hadinajafi.springwebapp.controllers;
 
 import com.github.hadinajafi.springwebapp.models.Book;
 import com.github.hadinajafi.springwebapp.repositories.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,8 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@RestController
-@RequestMapping("/books")
+@Controller
 public class BookController {
 
     private BookRepository bookRepository;
@@ -20,7 +20,7 @@ public class BookController {
         this.bookRepository = bookRepository;
     }
 
-    @GetMapping
+    @RequestMapping("/books")
     public String getBooks(Model model){
         model.addAttribute("books", bookRepository.findAll());
         return "books";
